@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Lukáš
  */
-public abstract class Client{
+public abstract class Client implements Comparable <Client>{
     protected String jmeno;
     ArrayList<Account> ucty = new ArrayList<>();
 
@@ -19,7 +19,12 @@ public abstract class Client{
 
     public abstract String getJmeno();
 
-    
+    @Override
+    public String toString() {
+        return jmeno+":"+getSuma();
+    }
+
+
     
     public void pridejUcet(double vklad){
         Account a = new Account(vklad);
@@ -36,6 +41,11 @@ public abstract class Client{
         //for (int i = 0; i < ucty.size(); i++) { 
         //      suma += accounts.get(i).getKonto();
         //        }
+    }
+    public String getSuma(){
+        double suma= celkovaSuma();
+        String v= ""+suma;
+        return v;
     }
        
     

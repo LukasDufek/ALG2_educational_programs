@@ -1,9 +1,11 @@
 package bank;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Locale;
 import java.util.Scanner;
 
 /**
@@ -17,8 +19,11 @@ public class BankApp {
     public static void main(String[] args) {
 
         String vys = "";
+        System.out.println("Zadej přijmení");
         Person pekar = new Person(sc.nextLine());
+        System.out.println("Zadej přijmení");
         Person svecova = new Person(sc.nextLine());
+        System.out.println("Zadej přijmení");
         Company skoda = new Company(sc.nextLine());
 
         ArrayList<Client> klienti = new ArrayList();
@@ -32,30 +37,41 @@ public class BankApp {
         svecova.pridejUcet(1200);
         skoda.pridejUcet(120);
 
-        ArrayList<Double> sumy = new ArrayList();
-
-        for (Client c : klienti) {
-            System.out.println(c.getJmeno() + ": " + c.celkovaSuma());
-            sumy.add(c.celkovaSuma());
-
+        
+        System.out.println("Seřazení podle sumy");
+        
+        Collections.sort(klienti); //compareTo
+        System.out.println(zobrazeni(klienti));
+        
+        System.out.println("Seřazení podle přijmení");
+         seradPodlePrijmeni(klienti);
+         System.out.println(zobrazeni(klienti));
+        
+       
+    }
+    
+    
+    public static String zobrazeni(ArrayList array) {
+        StringBuilder sb = new StringBuilder();
+        for (Object o : array) {
+            sb.append(o + "\n");
+            //
         }
 
-        Collections.sort(sumy);
-        for (int i = 0; i < sumy.size(); i++) {
-            System.out.println(sumy.get(i).doubleValue());
-
-        }
-
-        ArrayList<String> prijmeni = new ArrayList();
-        for (String string : prijmeni) {
-            prijmeni.add(pekar.getJmeno());
-            prijmeni.add(svecova.getJmeno());
-            prijmeni.add(skoda.getJmeno());
-        }
-
-        prijmeni.sort(Comparator.naturalOrder());
-        System.out.println(prijmeni);
+        return sb.toString();
 
     }
+    
+    public static void seradPodlePrijmeni(ArrayList<Client> klienti) { //annonymni trida
+        Collections.sort(klienti, new Comparator<Client>() {
+            @Override
+            public int compare(Client o1, Client o2) {
+                Collator col = Collator.getInstance(new Locale("cs", "CZ")); //kvuli prijmenim jako napr: Šimon
+                return col.compare(o1.getJmeno(), o2.getJmeno());
+            }
+        });
+    }
+    
+    
 
 }

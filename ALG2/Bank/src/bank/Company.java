@@ -16,6 +16,12 @@ public class Company extends Client{
     public String getJmeno() {
         return "Firma "+this.jmeno;
     }
+
+    @Override
+    public int compareTo(Client o) {
+    return (int) (this.celkovaSuma()- o.celkovaSuma());    
+    }
+    
     
     
     
