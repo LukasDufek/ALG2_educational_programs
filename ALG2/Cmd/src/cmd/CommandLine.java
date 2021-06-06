@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cmd;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -19,12 +17,12 @@ class CommandLine {
  
     public CommandLine() {
         isRunning = true;
-        currentDir = new File(System.getProperty("user.dir"));
+        currentDir = new File(System.getProperty("user.dir")); //zavolani aktualniho adresare
     }
  
     public String getCurrentDirAbsolutePath() {
         try {
-            return currentDir.getCanonicalPath();
+            return currentDir.getCanonicalPath(); // raletivni cesta
         } catch (Exception e) {
             return e.toString();
         }
@@ -36,9 +34,11 @@ class CommandLine {
             case "help":
                 return help();
             case "dir":
-                return dir(parsed.length > 1 ? parsed[1] : "");
+                return dir();
+            case "dir-r":
+                return dirR(parsed[1]);
             case "cd":
-                return cd(parsed[1]); // ../ui/nda
+                return cd(parsed[1]); 
             case "mkfile":
                 return mkfile(parsed[1]);
             case "mkdir":
@@ -107,31 +107,33 @@ class CommandLine {
         }
     }
     
-    public String dir(String path) {
-        File absolutePath = new File(path);
-        File[] list = absolutePath.listFiles();
-        String result = "";
-        for (File file : list) {
-            result += String.format("%25s", file.getName()); //TODO: long to time
+    public String dir() {
+        StringBuilder sb = new StringBuilder();
+        List<String> contents = Arrays.asList(currentDir.list());
+        for (String element : contents) {
+            sb.append(element + "\n");
         }
-        return result;
+        return sb.toString();
     }
     
-    /*
-    public String dir() {
-        File absolutePath = new File(path);
-        File[] list = absolutePath.listFiles();
-        String result = "";
-        for (File file : list) {
-            result += String.format("%25s", file.getName()); //TODO: long to time
-        }
-        return result;
+public String dirR(String addr){
+    StringBuilder sb = new StringBuilder();
+    File [] filesList = new File(addr).listFiles();
+    if(filesList == null){
+        return sb.toString();
     }
-    */
+    for (File file : filesList) {
+        sb.append("-").append(file.getName()).append("\n");
+        if(file.isDirectory()){
+            sb.append("-").append(dirR(file.getAbsolutePath()));
+        }
+    }
+    return sb.toString();
+}
     
     public String help() {
         return    "dir                            - vypíše obsah aktuálního adresáře\n"
-                + "dir [directoryPath]            - vypíše obsah zadaného adresáře\n"
+                + "dir-r [directoryName]          - vypíše obsah zadaného adresáře\n"
                 + "cd [path]                      - změna aktuálního adresáře\n"
                 + "mkfile [fileName]              - vytvoří soubor\n"
                 + "mkdir [directoryName]          - vytvoří složku\n"
@@ -144,6 +146,8 @@ class CommandLine {
         return isRunning;
     }
     
+    
+    
     private String arrayStringToString(String [] a){ //prevod pole stringu do stringu
         StringBuilder sb = new StringBuilder();
         for (String string : a) {
@@ -151,10 +155,7 @@ class CommandLine {
         }
         return sb.toString();
     }
-//    private String dir(String [] parts){
-//        String [] filesWithExtension = currentDir.list(new ExTensionFilter(parts[2]));
-//        return arrayToString(filesWithExtension);
-//    }
+
     
     
     
