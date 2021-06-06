@@ -4,22 +4,22 @@ package _25_Dufek_Bus;
 
 public class Bus {
     
-    private final int pocetSedadel; //nemeny
+    private final int pocetSedadel =40; //nemeny
     private int cisloLinky;
     private String nazevSpolecnosti; //referencni datovy typ
     private int pocetCestujicich;
     
 
     public Bus(int pocetSedadel, int cisloLinky, String nazevSpolecnosti) {
-        this.pocetSedadel = pocetSedadel;
+        //this.pocetSedadel = pocetSedadel;
         this.cisloLinky = cisloLinky;
         this.nazevSpolecnosti = nazevSpolecnosti;
         this.pocetCestujicich = 0;
 
     }
 
-    public Bus(int pocetSedadel) {
-        this.pocetSedadel = 40;
+    public Bus() {
+        //this.pocetSedadel = 40;
         this.pocetCestujicich=0;
     }
     
@@ -68,22 +68,27 @@ public class Bus {
     }
     
     
-
-    public void setNechatVystoupitPocetCestujicich(int pocetCestujicichV) {
-        this.pocetCestujicich -= pocetCestujicichV;
-        
-
+    public void nechatVystoupitPocetCestujicich(int pocetCestujicichV) {
+        if (this.pocetCestujicich < pocetCestujicichV ) {
+            System.out.println("Vystoupit mohlo jen " + this.pocetCestujicich);
+            this.pocetCestujicich = 0;
+        }else{
+            this.pocetCestujicich -= pocetCestujicichV;
+        }
     }
 
-    public void setNechatNastoupitPocetCestujicich(int pocetCestujicich) {
-        this.pocetCestujicich += pocetCestujicich;
-
+     public void nechatNastoupitPocetCestujicich(int pocetNastup) {
+         if (pocetNastup > (this.pocetSedadel - this.pocetCestujicich)) {
+             System.out.println("Do autobusu se tolik lidi nejvejde, nastoupit mohlo jen " + (this.pocetSedadel - this.pocetCestujicich));
+             this.pocetCestujicich = this.pocetSedadel;
+         }else{
+         this.pocetCestujicich += pocetNastup;
+         }
     }
-    
-    
-    public void setNechatVystoupitVsechnyCestujici() {
-        this.pocetCestujicich =0;
-    }
+     
+     public void vystupVsichni(){
+         this.pocetCestujicich = 0;
+     }
     
     
     

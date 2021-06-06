@@ -12,20 +12,28 @@ public class BusApp {
 
         autobus.setPocetCestujicich(0);
 
-        System.out.println("1.zastavka");
+        
+        for (int i = 1; i < 5; i++) {
+            System.out.println(i+".zastavka");
         System.out.println(autobus.toString());
         System.out.println("Zadej kolik lidi chce vystoupit a kolik nastoupit");
-        autobus.setNechatVystoupitPocetCestujicich(sc.nextInt());
-        autobus.setNechatNastoupitPocetCestujicich(sc.nextInt());
+        autobus.nechatVystoupitPocetCestujicich(sc.nextInt());
+        autobus.nechatNastoupitPocetCestujicich(sc.nextInt());
         System.out.println(autobus.toString());
         System.out.println("");
+        }
 
-        System.out.println("2.zastavka");
+        
+        System.out.println("5.zastavka. Konecna");
         System.out.println(autobus.toString());
         System.out.println("Zadej kolik lidi chce vystoupit a kolik nastoupit");
-        autobus.setNechatVystoupitPocetCestujicich(sc.nextInt());
-        autobus.setNechatNastoupitPocetCestujicich(sc.nextInt());
+        autobus.nechatVystoupitPocetCestujicich(sc.nextInt());
+        autobus.nechatNastoupitPocetCestujicich(sc.nextInt());
         System.out.println(autobus.toString());
+        System.out.println("");
+        
+        autobus.vystupVsichni();
+         System.out.println(autobus.toString());
         
         
         

@@ -26,4 +26,6 @@ public class Bezec {
     public int getCisloBezce() {
         return cisloBezce;
     }
+    
+    
 }
