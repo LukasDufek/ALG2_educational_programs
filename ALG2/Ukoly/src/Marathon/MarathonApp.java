@@ -101,13 +101,14 @@ public class MarathonApp {
         Bezec prvni= null;
         
         for(Bezec b: bezci){
-            if(b.getDobaBehu()<prvniCas)
+            if(b.getDobaBehu() < prvniCas){
                 prvniCas=b.getDobaBehu();
                 prvni= b;
-                
+            }   
         }
         return prvni;
     }
+    
     
     
     

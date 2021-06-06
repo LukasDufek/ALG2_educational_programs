@@ -18,14 +18,21 @@ public class Bezec {
     }
 
     public int getDobaBehu(){
-        int celkovyCilovyCas = cilovyCasH*3600 + cilovyCasM*60 + cilovyCasS;
-        int dobaBehu = celkovyCilovyCas - zacatek;
+        int celkovyCilovyCas = this.cilovyCasH*3600 + this.cilovyCasM*60 + this.cilovyCasS;
+        int dobaBehu = celkovyCilovyCas - this.zacatek;
         return dobaBehu;
     }
 
     public int getCisloBezce() {
         return cisloBezce;
     }
+
+    @Override
+    public String toString() {
+        return "Bezec{" + "cisloBezce=" + cisloBezce + ", cilovyCasH=" + cilovyCasH + ", cilovyCasM=" + cilovyCasM + ", cilovyCasS=" + cilovyCasS + ", zacatek=" + zacatek + '}';
+    }
+    
+    
     
     
 }

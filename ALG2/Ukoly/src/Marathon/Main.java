@@ -23,4 +23,13 @@ public class Main {
         System.out.format("Prumerny cas nejrychlejsiho bezce na 1 km byl %s.\n",marathon.prumernyCasNaKilometrNejrychlejsihoBezce());
         System.out.format("Prumerna rychlost nejrychlejsiho bezce byla %.2f km/h.\n",marathon.prumernaRychlostNejrychlejsiho());
     }
+    
+    /* testovaci vstup
+5
+1001 11 16 39
+1002 11 21 48
+1004 11 21 23
+1012 11 23 46
+1013 11 23 16
+    */
 }
