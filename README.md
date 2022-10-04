@@ -1,6 +1,6 @@
 ### **Educational programs**
 ### **Subject:** Algorithms and Computer Programming 2
-### **Programming language:** JAVA
+### __Programming language:__ JAVA
 ---------------
 ### Topics: 
 * Object-oriented programming
