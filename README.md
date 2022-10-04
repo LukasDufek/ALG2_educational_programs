@@ -1,6 +1,6 @@
 ## Educational programs
-## Subject: Algorithms and Computer Programming 2
-## Programming language: JAVA
+Subject: Algorithms and Computer Programming 2
+Programming language: JAVA
 ### Topics: 
 * Object-oriented programming
 * Inheritance
